@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.StudentDao">
+    <sql id="selectFileds">
+        id, name ,age
+    </sql>
+
+    <select id="getList" resultType="Student">
+        SELECT <include refid="selectFileds">
+        </include>
+        from student
+    </select>
+
+    <insert id="addStudent" parameterType="Student">
+        insert into student(id,name,age) VALUES (#{id},#{name},#{age})
+    </insert>
+
+    <delete id="deleteStudentById" parameterType="java.lang.Integer">
+        DELETE from student where id=#{id}
+    </delete>
+
+    <update id="updateStudentByName" >
+        update student set name=#{name} where id=#{id}
+    </update>
+
+</mapper>
